@@ -122,7 +122,7 @@ class SmartWebSocket(object):
 
         # return data
         if data:
-            self._on_message(self.ws, data)
+            self._on_message(self, data)
 
     def connect(self):
         # websocket.enableTrace(True)
@@ -146,12 +146,12 @@ class SmartWebSocket(object):
             self.WS_RECONNECT_FLAG = False
             self.resubscribe()
         else:
-            self._on_open(ws)
+            self._on_open(self)
 
     def __on_close(self, ws):
         self.HB_THREAD_FLAG = True
         print("__on_close################")
-        self._on_close(ws)
+        self._on_close(self)
 
     def __on_error(self, ws, error):
 
